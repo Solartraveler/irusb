@@ -1,0 +1,39 @@
+BOM:        Shop     Order no          Price/1
+
+Required:
+C1, C2      Reichelt X5R-G0805 10/16   0,08
+C2, C3      Reichelt NPO-G0805 22P     0,02
+C5, C6, C7  Reichelt X7R-G0805 100N    0,02
+C8, C9      Reichelt X5R-G1210 22      0,37
+D1          Reichelt LG R971           0,05
+D2, D3      Reichelt CQY 99            0,25
+D4          Reichelt LS R976           0,06
+J1          Reichelt MIC USB BBU       0,50
+J4          Reichelt MPE 087-1-002     0,05
+Q1          Reichelt IRLML 6344        0,15
+R1, R6      Reichelt SMD-0805 1,00K    0,03
+R2, R8      Reichelt SMD-0805 10,0K    0,03
+R3          Reichelt SMD-0805 100K     0,03
+R4          Reichelt SMD 1/4W 18       0,04
+R5          Reichelt SMD-0805 3,30     0,03
+U1          Reichelt MCP 1754-3302CB   0,37
+U3          Reichelt USBLC6-2SC6       0,15
+Y1          Reichelt 8,0000-HC49U-S    0,24
+U2          Develektro 2750629         3,97
+   OR
+U2          RS       1106613           3,13 (only if buying 5 parts)
+PCB         Aisler                     5,12 (only if buying 3 parts)
+
+Recommend:
+Case        Reichelt TEKO 10006        1,46
+C10         Reichelt KEM X5R0805 4,7U  0,09
+J3          Reichelt MPE 094-1-003     0,13
+J7          Reichelt MPE 094-1-008     0,24
+H1, H2      --       2.5mm screws
+            --       Jumper for J4
+
+Optional:
+R7          Reichelt SMD-0805 1,50K    0,03
+J2          Reichelt MPE 087-1-006     0,14
+
+Sum: 5,37€+ U2 + PCB = 13,62
