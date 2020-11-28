@@ -1,0 +1,31 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y gcc-arm-none-eabi make dfu-util python3-usb
+    - name: make
+      run: make
+#    - name: debianpackage
+#      run: make -C src deb
+#    - name: install
+#      run: sudo apt install -y ./*.deb
+    - name: Artifacts upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: Binary-for-STM32F042K6T
+        path: |
+          src-device/build/irusb.bin
+          src-device/LICENSE
+    - name: Test host
+      run: ./src-host/irusbControl.py --help
+

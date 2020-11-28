@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "IRUSB"
-Date "2020-11-27"
+Date "2020-11-28"
 Rev "1.0.1"
 Comp "(c) 2020 by Malte Marwedel"
 Comment1 ""
@@ -890,7 +890,7 @@ L Device:C C10
 U 1 1 5F856CD1
 P 6500 2200
 F 0 "C10" H 6385 2154 50  0000 R CNN
-F 1 "4,7µF" H 6385 2245 50  0000 R CNN
+F 1 "4.7µF" H 6385 2245 50  0000 R CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6538 2050 50  0001 C CNN
 F 3 "~" H 6500 2200 50  0001 C CNN
 	1    6500 2200

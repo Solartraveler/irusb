@@ -1,5 +1,9 @@
-2020-11.27: Version 1.0.1
- - Notes added to schematic and pcb. Parts, connections and layout are unchanged.
+2020-11-28: Version 1.0.1
+ - Notes added to schematic and pcb about U1
+ - Added note for R7
+ - Improve notes about J4 and JP2
+ - Add pin length suggestion for D2 and D3
+ - Parts, connections and layout are unchanged
 
 2020-10-23: Version 1.0.0
  - PCB send to production
