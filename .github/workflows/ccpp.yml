@@ -26,6 +26,6 @@ jobs:
         path: |
           src-device/build/irusb.bin
           src-device/LICENSE
-    - name: Test host
-      run: ./src-host/irusbControl.py --help
+    - name: Test
+      run: make test
 

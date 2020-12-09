@@ -39,11 +39,7 @@ Tested with a [NUCLEO-F411RE](https://www.st.com/en/evaluation-tools/nucleo-f411
 
 ## TODO
 
-Get an own USB PID and add it to the project -> Version 1.0
-
 Make a debian package for the host control program
-
-The watchdog seems not to do anything
 
 Create and publish a kicad symbol for a MCP1754-3302E_SOT23
 

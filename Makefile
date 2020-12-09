@@ -3,3 +3,6 @@ all:
 
 clean:
 	make -C src-device clean
+
+test:
+	./src-host/irusbControl.py --help

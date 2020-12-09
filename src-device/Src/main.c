@@ -178,15 +178,24 @@ static void MX_IWDG_Init(void)
 
   /* USER CODE BEGIN IWDG_Init 0 */
 
+  /* Setting the prescaler fails for some reason if the program is started from
+   the DFU bootloader. When starting from the DFU bootloader, the prescaler
+   stays at the value 6 = divider 256. So in order to have a consistent
+   behavior, we use this prescaler in every case. Luckily setting the reload
+   value works. 40kHz/256 = 157. So one second until timeout.
+   Since the clock can be even 50kHz according to the datasheet, a watchdog
+   reset within 0.79s is required.
+  */
+
   /* USER CODE END IWDG_Init 0 */
 
   /* USER CODE BEGIN IWDG_Init 1 */
 
   /* USER CODE END IWDG_Init 1 */
   hiwdg.Instance = IWDG;
-  hiwdg.Init.Prescaler = IWDG_PRESCALER_64;
-  hiwdg.Init.Window = 4095;
-  hiwdg.Init.Reload = 4095;
+  hiwdg.Init.Prescaler = IWDG_PRESCALER_256;
+  hiwdg.Init.Window = 157;
+  hiwdg.Init.Reload = 157;
   if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
   {
     Error_Handler();

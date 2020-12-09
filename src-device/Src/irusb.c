@@ -14,6 +14,11 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+Version history:
+
+2020-12-07: Version 1.0
 */
 
 
@@ -62,6 +67,9 @@ usbd_device g_usbDev;
 //must be 4byte aligned
 uint32_t g_usbBuffer[20];
 
+/* The PID is reserved for this project. Please use another PID,
+should the source be used for a project with another purpose/incompatible
+USB control commands */
 uint8_t g_deviceDescriptor[] = {
 	0x12,       //length of this struct
 	0x01,       //always 1
@@ -71,7 +79,7 @@ uint8_t g_deviceDescriptor[] = {
 	0xFF,       //device protocol
 	0x20,       //maximum packet size
 	0x09,0x12,  //vid
-	0x01,0x00,  //pid
+	0x00,0x77,  //pid
 	0x00,0x01,  //revision
 	0x1,        //manufacturer index
 	0x2,        //product name index
@@ -410,7 +418,7 @@ void startUsb(void)
 
 void initIrusb(void) {
 	NVIC_EnableIRQ(USART1_IRQn);
-	dbgPrintf("IRUSB 0.9 (c) 2020 by Malte Marwedel\r\nStarting...\r\n");
+	dbgPrintf("IRUSB 1.0 (c) 2020 by Malte Marwedel\r\nStarting...\r\n");
 	startUsb();
 	irsnd_init();
 	irmp_init();
@@ -490,8 +498,21 @@ void IrUsb1msPassed(uint32_t timestamp) {
 	if ((debugData == 'R') || (g_ResetRequest == true)) {
 		dbgPrintf("Resetting...\r\n");
 		HAL_Delay(50); //let the uart print its message and the USB send the act
+#if 1
 		NVIC_SystemReset();
+#else
+		//test if the independend watchdog does its work
+		uint32_t x = 0;
+		while(1)
+		{
+			x++;
+			HAL_Delay(100);
+			dbgPrintf("%u\r\n", x);
+		}
+#endif
 	}
+	/* We have to call the refresh within 1s, if the clock source has its
+	   nominal frequency of 40KHz. However this may vary from 20 to 50kHz!*/
 	HAL_IWDG_Refresh(&hiwdg);
 }
 

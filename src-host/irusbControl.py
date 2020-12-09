@@ -16,7 +16,12 @@
 # this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#version 0.9
+#version 1.0
+
+import sys
+from os.path import expanduser
+import time
+
 
 def sendIr(dev, protocolStr, addressStr, commandStr, flagsStr='0'):
 	protocol = int(protocolStr, 0)
@@ -87,10 +92,9 @@ def recIr(dev):
 		print('Protocol:' + str(protocol) + ' Address:' + hex(address) + ' Command:' + hex(command) + ' Flags:' + hex(flags))
 
 
-import sys
-from os.path import expanduser
-
 parameters = len(sys.argv)
+
+aliasFilename = expanduser("~") + '/.irusbAliases'
 
 if parameters == 2:
 	if (sys.argv[1] == '--help'):
@@ -99,7 +103,7 @@ if parameters == 2:
 		print('Usage:')
 		print('--help:        Prints this screen')
 		print('--version:     Prints the version')
-		print('For IR commands, LED commands and delay commands, there is a queue on the other side with up to 16 entries')
+		print('For IR commands, LED commands and delay commands, there is a queue on the other side with up to 16 entries.')
 		print('<Protocol Number> <Address> <Command>: Sends an IR command with flags 0')
 		print('<Protocol Number> <Address> <Command> <flags>: Sends an IR command')
 		print('  Numbers can be in decimal or hexadecimal.')
@@ -111,7 +115,7 @@ if parameters == 2:
 		print('irusbreset:    Resets the device. Ignoring the command queue.')
 		print('Call without parameter: Requests received ir commands from IRUSB every 250ms. Terminate with CTRL+C.')
 		print('')
-		print('You can add an alias file in your ~ directory named .irusbAliases')
+		print('You can add an alias file at ' + aliasFilename)
 		print('Write YourCoolCommand <Protocol Number> <Address> <Command> <flags> in one line.')
 		print('  Example: LightDarker 2 0xff00 2 0')
 		print('           LightBrighter 2 0xff00 0 0')
@@ -124,10 +128,10 @@ if parameters == 2:
 		print('0: Command sent')
 		print('1: Invalid command')
 		print('2: python USB library not installed')
-		print('3: USB device not found')
+		print('3: USB device not found, or product name wrong')
 		sys.exit(0)
 	if (sys.argv[1] == '--version'):
-		print('Version 0.9')
+		print('Version 1.0')
 		sys.exit(0)
 
 try:
@@ -140,10 +144,10 @@ except:
 	print('Or as root: apt install python3-usb')
 	sys.exit(2)
 
-import time
-
 # find our device
-dev = usb.core.find(idVendor=0x1209, idProduct=0x0001)
+#For testing own devices, use idProduct=0x0001
+#dev = usb.core.find(idVendor=0x1209, idProduct=0x0001)
+dev = usb.core.find(idVendor=0x1209, idProduct=0x7700)
 
 # was it found?
 if dev is None:
@@ -153,6 +157,15 @@ if dev is None:
 # set the active configuration. With no arguments, the first
 # configuration will be the active one
 dev.set_configuration()
+
+
+if dev.manufacturer != 'marwedels.de':
+	print('Warning, the manufacturer >' + dev.manufacturer + '< might not be supported by this control program')
+
+if dev.product != 'IRUSB':
+	print('Error, the product >' + dev.product + '< is not be supported by this control program')
+	sys.exit(3)
+
 
 #For ctrl_transfer: bmRequestType, bmRequest, wValue and wIndex, data array or its length
 
@@ -171,7 +184,7 @@ elif parameters == 2:
 	if sys.argv[1] == 'irusbreset':
 		success = sendReset(dev)
 	else:
-		aliasFile = open(expanduser("~") + '/.irusbAliases', 'r')
+		aliasFile = open(aliasFilename, 'r')
 		aliases = aliasFile.readlines()
 		aliasFile.close()
 		tokenFound = False
