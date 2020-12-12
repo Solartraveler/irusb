@@ -63,7 +63,7 @@ The PCB is under creative common license. [CC-BY-SA 3.0 DE](https://creativecomm
 
 ## Windows users
 
-Windows makes using USB devices difficult :( These steps are tested with Windows 10 64bit version 1903.
+Windows makes using USB devices a little bit more difficult. These steps are tested with Windows 10 64bit version 1903.
 
 Install [python 3.9 for windows](https://www.python.org/downloads/windows/) and allow adding python to PATH.
 
@@ -73,6 +73,6 @@ Install pyusb with pip3 install pyusb
 
 Now calling irusb-control.py will result in the error message "No backed available."
 
-You will need a windows driver for IRUSB.  (libusbK-inf-wizard.exe)[https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/libusbK-inf-wizard.exe] can generate one. I tried kernel driver package libusb0 v1.2.6.0. Select IRUSB (VID = 0x7700), then in the generated DriverPackages directory call InstallDriver.exe.
+You will need a windows driver for IRUSB.  [libusbK-inf-wizard.exe](https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/libusbK-inf-wizard.exe) can generate one. I tried kernel driver package libusb0 v1.2.6.0. Select IRUSB (VID = 0x7700), then in the generated DriverPackages directory call InstallDriver.exe.
 
 Now calling irusb-control.py should work.
