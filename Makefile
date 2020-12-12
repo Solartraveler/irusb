@@ -4,5 +4,8 @@ all:
 clean:
 	make -C src-device clean
 
+package:
+	./src-host/makeDebianPackage.sh
+
 test:
-	./src-host/irusbControl.py --help
+	./src-host/irusb-control.py --help

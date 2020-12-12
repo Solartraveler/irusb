@@ -16,10 +16,10 @@
 # this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-#version 1.0
+#version 1.0.0, tested with python 3.7
 
 import sys
-from os.path import expanduser
+from os import path
 import time
 
 
@@ -94,12 +94,13 @@ def recIr(dev):
 
 parameters = len(sys.argv)
 
-aliasFilename = expanduser("~") + '/.irusbAliases'
+aliasFilename = path.join(path.expanduser("~"), '.irusbAliases')
 
 if parameters == 2:
 	if (sys.argv[1] == '--help'):
 		print('IRUSB control')
 		print('(c) 2020 by Malte Marwedel. Licensed under GPL v2 or later')
+		print('')
 		print('Usage:')
 		print('--help:        Prints this screen')
 		print('--version:     Prints the version')
@@ -119,6 +120,7 @@ if parameters == 2:
 		print('Write YourCoolCommand <Protocol Number> <Address> <Command> <flags> in one line.')
 		print('  Example: LightDarker 2 0xff00 2 0')
 		print('           LightBrighter 2 0xff00 0 0')
+		print('           WaitASec delay 1000')
 		print('Then you can simply call YourCoolCommand as parameter.')
 		print('The delay and LED commands are supported too.')
 		print('If you define an alias more than once, both commands are executed. By this way, complex scripts can be defined.')
@@ -131,7 +133,7 @@ if parameters == 2:
 		print('3: USB device not found, or product name wrong')
 		sys.exit(0)
 	if (sys.argv[1] == '--version'):
-		print('Version 1.0')
+		print('Version 1.0.0')
 		sys.exit(0)
 
 try:
