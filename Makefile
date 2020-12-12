@@ -5,7 +5,7 @@ clean:
 	make -C src-device clean
 
 package:
-	${CURDIR}/src-host/makeDebianPackage.sh
+	/bin/bash ${CURDIR}/src-host/makeDebianPackage.sh
 
 test:
 	${CURDIR}/src-host/irusb-control.py --help
