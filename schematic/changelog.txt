@@ -1,3 +1,9 @@
+2021-10-13: Version 1.1.1
+ - Rename U1 from MCP1754-3302E to MCP1754S-3302E
+
+2020-12-16: Version 1.1.1
+ - Fix footprint for U1 and remove note about it
+
 2020-11-28: Version 1.0.1
  - Notes added to schematic and pcb about U1
  - Added note for R7

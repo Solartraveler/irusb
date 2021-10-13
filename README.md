@@ -43,8 +43,6 @@ Tested with a [NUCLEO-F411RE](https://www.st.com/en/evaluation-tools/nucleo-f411
 
 Create and publish a kicad symbol for a MCP1754-3302E_SOT23
 
-Make a PCB layout version 1.1 with the fixed 3.3V regulator footprint
-
 ## Libraries used and licenses
 
 The software uses several open source libraries with different licenses.
@@ -73,6 +71,14 @@ Install pyusb with pip3 install pyusb
 
 Now calling irusb-control.py will result in the error message "No backed available."
 
-You will need a windows driver for IRUSB.  [libusbK-inf-wizard.exe](https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/libusbK-inf-wizard.exe) can generate one. I tried kernel driver package libusb0 v1.2.6.0. Select IRUSB (VID = 0x7700), then in the generated DriverPackages directory call InstallDriver.exe.
+You will need a windows driver for IRUSB. [libusbK-inf-wizard.exe](https://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/libusbK-inf-wizard.exe) can generate one. I tried kernel driver package libusb0 v1.2.6.0. Select IRUSB (VID = 0x7700), then in the generated DriverPackages directory call InstallDriver.exe.
 
 Now calling irusb-control.py should work.
+
+## Alternate usage
+
+The PCB can be used as simple testing board for other projects too. The project [stm32-verprog](https://github.com/dword1511/stm32-vserprog/) had already support for the same STM32 chip as used for IRUSB. So using a spare PCB as SPI flash chip programmer was easy.
+
+![alt text](pictures/alternate-use-as-flasher.jpg "PCB with connections to a breadboard")
+
+Note: The socket shown on the picture is only 150mil in width, but flash chips typically require 200mil wide ones. So the flash chip is inserted upside down and the wires are mirrored accordingly.
