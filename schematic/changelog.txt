@@ -1,5 +1,5 @@
 2021-12-05: Version 1.1.2 (only changes on PCB, no schematic changes)
- - Update silkmask
+ - Update silkscreen
  - Reduce clearance value of GND zones
  - Remove one via
 
